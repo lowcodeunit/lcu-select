@@ -19,10 +19,10 @@
 			"dom"
 		],
 		"paths": {
-			"common": [
+			"@lowcodeunit/lcu-select-common": [
 				"dist/common"
 			],
-			"common/*": [
+      "@lowcodeunit/lcu-select-common/*": [
 				"dist/common/*"
 			]
 		}
