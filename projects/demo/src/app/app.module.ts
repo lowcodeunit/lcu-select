@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LcuSelectModule } from '@lowcodeunit/lcu-select-common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { LcuSelectModule } from '@lowcodeunit/lcu-select-common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LcuSelectModule
+    LcuSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

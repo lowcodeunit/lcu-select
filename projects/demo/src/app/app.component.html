@@ -1,3 +1,25 @@
 
 <!-- <router-outlet></router-outlet> -->
-<lcu-select-component></lcu-select-component>
+<form
+  [formGroup]="Form"
+  novalidate>
+  <div class="m-10" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-card-title>LCU-Select Component</mat-card-title>
+      <mat-card-content>
+        <lcu-select-component
+        formControlName="selectFormControl"
+        [Config]="DemoConfig"
+        (SelectOpened)="SelectionOpened($event)"
+        (SelectAllSelected)="SelectAllSelected($event)"
+        (SelectOptionSelected)="SelectOptionSelected($event)"
+        ></lcu-select-component>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="Search()" >Search</button>
+    <button mat-raised-button color="accent" [disabled]="!Form.valid" (click)="ClearForm()">Clear</button>
+</div>
+</form>
+
