@@ -12,7 +12,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'lcu-select demo';
+  public title: string = 'lcu-select demo';
 
 
   /**
