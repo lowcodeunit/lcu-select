@@ -2,7 +2,7 @@
 	"name": "@lowcodeunit/lcu-select",
 	"version": "0.0.1",
 	"scripts": {
-    "build:common": "ng build common",
+		"build:common": "ng build common",
 		"build:demo": "ng build demo --prod",
 		"build:lcu": "ng build lcu --prod --single-bundle && npm run pack",
 		"demo": "npm run build:common && npm run start:demo",
