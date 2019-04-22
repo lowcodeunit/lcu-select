@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from './constants/constants';
 import { EventModel } from '@lowcodeunit/lcu-select-common';
 import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'lcu-root',
@@ -12,6 +13,7 @@ import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/fo
 })
 export class AppComponent implements OnInit {
   title = 'demo';
+
 
   /**
    * Setup config for selection component
@@ -22,14 +24,14 @@ export class AppComponent implements OnInit {
 /**
    * Access ConditionVariableNames field
    */
-  public get SelectControl(): AbstractControl {
-    return this.Form.get('selectFormControl');
+  public get LCUSelect(): AbstractControl {
+    return this.Form.get('lcuSelect');
   }
 
   public ngOnInit(): void {
 
     this.Form = new FormGroup({
-      selectFormControl: new FormControl('', { validators: Validators.required })
+      lcuSelect: new FormControl('', { validators: Validators.required })
     });
 
     this.DemoConfig = new ConfigModel();
@@ -38,8 +40,19 @@ export class AppComponent implements OnInit {
     this.DemoConfig.MultiSelect.DefaultSelectAll = true;
 
     this.DemoConfig.Source = Constants.SELECT_VALS;
+
+    this.onChange();
   }
 
+    protected onChange(): void {
+
+      // use distinctUntilChange(), so we don't get multiple change events
+      this.LCUSelect.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe(val => {
+        console.log('onChange app', val);
+      });
+    }
   /**
    *
    * @param evt boolen for when selection is open or closed
@@ -80,6 +93,14 @@ export class AppComponent implements OnInit {
 
   public ClearForm(): void {
 
+  }
+
+  public EnableForm(): void {
+    this.Form.enable();
+  }
+
+  public DisableForm(): void {
+    this.Form.disable();
   }
 
 }

@@ -1,0 +1,31 @@
+<mat-form-field>
+  <mat-select
+    #SelectControl
+    [placeholder]="Placeholder ? Placeholder : ''"
+    [multiple] = "Config.MultiSelect.Enable"
+    (openedChange)="OpenedChangeHandler($event)"
+    [disabled]="Disabled">
+
+    <!--This tells us the first item and how many additional items are selected-->
+      <mat-select-trigger *ngIf="SelectControl.value && SelectControl.value.length">
+          {{ SelectControl.value.length > 0 ? SelectControl.value[0]['Key'] : '' }}
+          <span *ngIf="SelectControl.value.length > 1">
+              (+{{SelectControl.value.length - 1}} others)
+          </span>
+      </mat-select-trigger>
+
+    <!--'Select All' option with divider-->
+      <mat-option *ngIf="Config.MultiSelect.SelectAll"
+        #SelectAllOptionControl [value]="SelectAllObj"
+        (click)="SelectAllHandler($event, SelectAllObj['Key'])">{{ SelectAllObj['Key'] }}
+      </mat-option>
+      <mat-divider style="margin-bottom: 10px"></mat-divider>
+
+      <!--All other selectable options-->
+      <mat-option *ngFor="let option of Config.Source" [value]="option"
+        (click)="SelectOptionsHandler($event, option['Key'])">{{ option['Key'] }}
+      </mat-option>
+
+  </mat-select>
+</mat-form-field>
+
