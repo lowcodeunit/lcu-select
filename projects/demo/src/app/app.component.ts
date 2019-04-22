@@ -1,10 +1,8 @@
-import { SelectSourceModel } from '../../../common/src/lib/models/select-source.model';
-import { ConfigModel } from '../../../common/src/lib/models/config.model';
 import { Component, OnInit } from '@angular/core';
-import { Constants } from './constants/constants';
-import { EventModel } from '@lowcodeunit/lcu-select-common';
 import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { Constants } from './constants/constants';
+import { EventModel, ConfigModel } from '@lowcodeunit/lcu-select-common';
 
 @Component({
   selector: 'lcu-root',
@@ -12,7 +10,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title: string = 'lcu-select demo';
+  title = 'lcu-select demo';
 
 
   /**
