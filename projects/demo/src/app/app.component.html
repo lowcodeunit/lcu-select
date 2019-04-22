@@ -1,25 +1,27 @@
 
 <!-- <router-outlet></router-outlet> -->
-<form
-  [formGroup]="Form"
-  novalidate>
-  <div class="m-10" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card>
-      <mat-card-title>LCU-Select Component</mat-card-title>
-      <mat-card-content>
-        <lcu-select-component
-        formControlName="selectFormControl"
-        [Config]="DemoConfig"
-        (SelectOpened)="SelectionOpened($event)"
-        (SelectAllSelected)="SelectAllSelected($event)"
-        (SelectOptionSelected)="SelectOptionSelected($event)"
-        ></lcu-select-component>
-      </mat-card-content>
+<div fxLayout="column">
+  <form
+    [formGroup]="Form"
+    novalidate>
+    <div fxLayout="column" fxLayoutAlign="center center" class="m-10">
+      <mat-card>
+        <mat-card-title>LCU-Select Component</mat-card-title>
+        <lcu-select
+          [Config]="DemoConfig"
+          formControlName="lcuSelect"
+          (SelectOpened)="SelectionOpened($event)"
+          (SelectAllSelected)="SelectAllSelected($event)"
+          (SelectOptionSelected)="SelectOptionSelected($event)">
+        </lcu-select>
+        <!-- <mat-hint *ngIf="GenericSelect.valid">Select at least one option</mat-hint> -->
+      <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
     </mat-card>
-  </div>
-  <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-    <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="Search()" >Search</button>
-    <button mat-raised-button color="accent" [disabled]="!Form.valid" (click)="ClearForm()">Clear</button>
+    </div>
+    <!-- <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" [disabled]="Form.enabled" (click)="EnableForm()">Enable</button>
+      <button mat-raised-button color="warn" [disabled]="Form.disabled" (click)="DisableForm()">Disable</button>
+    </div> -->
+  </form>
 </div>
-</form>
 

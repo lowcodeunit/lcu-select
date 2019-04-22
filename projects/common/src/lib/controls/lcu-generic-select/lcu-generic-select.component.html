@@ -1,0 +1,9 @@
+<h4>Basic mat-select</h4>
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select #Select [disabled]="readonlyToggle">
+    <mat-option #SelectOption *ngFor="let food of foods" [value]="food.value" (click)="OptionSelected($event)">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
