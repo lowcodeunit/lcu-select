@@ -81,24 +81,8 @@ export class AppComponent implements OnInit {
    *
    * @param evt event model for selected item
    */
-  public SelectOptionSelected(evt: EventModel): void {
-    console.log('option selected', evt);
-  }
-
-  public Search(): void {
-
-  }
-
-  public ClearForm(): void {
-
-  }
-
-  public EnableForm(): void {
-    this.Form.enable();
-  }
-
-  public DisableForm(): void {
-    this.Form.disable();
+  public OptionSelected(evt: EventModel): void {
+    console.log('option selected, app', evt);
   }
 
 }

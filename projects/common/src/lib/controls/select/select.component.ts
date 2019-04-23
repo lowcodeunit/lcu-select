@@ -30,9 +30,9 @@ import { EventModel } from '../../models/event.model';
 
 export class SelectComponent implements OnInit, ControlValueAccessor {
 
-  /***************************** */
-  // ** INPUTS */
- /***************************** */
+/***************************** */
+// ** INPUTS */
+/***************************** */
  @Input()
   set Config(val: ConfigModel) {
     if (!val) {
@@ -62,13 +62,15 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    */
   @Input() public Placeholder: string;
 
-  @Input() public _value: any;
-  // @Input('value') public _value: any;
+  /**
+   * Control value
+   */
+  @Input('value') public _value: any;
 
 
-  /***************************** */
-  // ** OUTPUTS */
-  /***************************** */
+/***************************** */
+// ** OUTPUTS */
+/***************************** */
 
   /**
    * Event fired when select is opened or closed, passing boolean value
@@ -85,11 +87,14 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    */
   @Output() public SelectOptionSelected: EventEmitter<EventModel> = new EventEmitter<EventModel>();
 
-  @Output() public selectedEvent: EventEmitter<EventModel> = new EventEmitter<EventModel>();
+  /**
+   * Event for when something is selected
+   */
+  @Output() public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<EventModel>>();
 
-    /***************************** */
- // ** VIEWCHILDREN */
- /***************************** */
+/***************************** */
+// ** VIEWCHILDREN */
+/***************************** */
 
 /**
   * Select all option
@@ -102,9 +107,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
  @ViewChild('SelectControl') SelectControl: MatSelect;
 
 
-    /***************************** */
- // ** PROPERTIES */
- /***************************** */
+/***************************** */
+// ** PROPERTIES */
+/***************************** */
 
   /**
    * Configuration object of property values
@@ -122,9 +127,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
 
  /** Fired when any changes to the model are detected */
- public onChange: any = (val) => {
-   console.log('onChange component', val);
- };
+ public onChange: any = () => { };
 
  /** Fired when the component is blurred. TODO: This currently doesn't work - need to figure out why and fix it */
  public onTouched: any = () => { };
@@ -147,9 +150,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 
-   /***************************** */
- // ** LIFECYCLE */
- /***************************** */
+/***************************** */
+// ** LIFECYCLE */
+/***************************** */
 
   public ngOnInit(): void {
     this.isReady = true;
@@ -178,10 +181,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    this.selectValues();
 
     const e: EventModel = new EventModel();
-    e.Event = evt;
-    e.Name = name;
+      e.Event = evt;
+      e.Name = name;
 
-   // this.SelectAllSelected.emit(e);
    this.optionSelected(evt);
   }
 
@@ -199,7 +201,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     e.Event = evt;
     e.Name = name;
 
-   // this.SelectOptionSelected.emit(e);
    this.optionSelected(evt);
   }
 
@@ -219,7 +220,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   protected optionSelected(evt?: Event): void {
     this.value = this.SelectControl.value;
     this.onChange(this.value);
-    this.selectedEvent.emit(this.value);
+    this.SelectedEvent.emit(this.value);
   }
 
 /**
@@ -241,7 +242,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
        this.SelectControl.value = [];
      }
 
-     console.log('selectValues', this.SelectControl.value);
     this.optionSelected();
     }
 
@@ -281,9 +281,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    }
 
 
-   /***************************** */
- // ** CHANGE EVENT - needed in order for this to work as a form control in reactive forms */
- /***************************** */
+/***************************** */
+// ** CHANGE EVENT - needed in order for this to work as a form control in reactive forms */
+/***************************** */
 
 
  /**
@@ -331,9 +331,11 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    *
    * @param val The value to emit.
    */
-  public emitSelected(val: any) {
-    console.log('emitted value', val);
-    this.selectedEvent.emit(val);
+  public emitSelected(val: Array<EventModel>) {
+    this.SelectedEvent.emit(val);
+
+    // prevent double emit
+    this.SelectedEvent.complete();
   }
 
 }

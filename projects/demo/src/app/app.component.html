@@ -9,10 +9,10 @@
         <mat-card-title>LCU-Select Component</mat-card-title>
         <lcu-select
           [Config]="DemoConfig"
+          Placeholder="Demo Select"
           formControlName="lcuSelect"
           (SelectOpened)="SelectionOpened($event)"
-          (SelectAllSelected)="SelectAllSelected($event)"
-          (SelectOptionSelected)="SelectOptionSelected($event)">
+          (SelectedEvent)="OptionSelected($event)">
         </lcu-select>
         <!-- <mat-hint *ngIf="GenericSelect.valid">Select at least one option</mat-hint> -->
       <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
