@@ -1,0 +1,27 @@
+
+<!-- <router-outlet></router-outlet> -->
+<div fxLayout="column">
+  <form
+    [formGroup]="Form"
+    novalidate>
+    <div fxLayout="column" fxLayoutAlign="center center" class="m-10">
+      <mat-card>
+        <mat-card-title>LCU-Select Component</mat-card-title>
+        <lcu-select
+          [Config]="DemoConfig"
+          Placeholder="Demo Select"
+          formControlName="lcuSelect"
+          (SelectOpened)="SelectionOpened($event)"
+          (SelectedEvent)="OptionSelected($event)">
+        </lcu-select>
+        <!-- <mat-hint *ngIf="GenericSelect.valid">Select at least one option</mat-hint> -->
+      <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
+    </mat-card>
+    </div>
+    <!-- <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" [disabled]="Form.enabled" (click)="EnableForm()">Enable</button>
+      <button mat-raised-button color="warn" [disabled]="Form.disabled" (click)="DisableForm()">Disable</button>
+    </div> -->
+  </form>
+</div>
+
