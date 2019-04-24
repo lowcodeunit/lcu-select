@@ -114,7 +114,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   /**
    * Configuration object of property values
    */
- private _config: ConfigModel;
+ protected _config: ConfigModel;
+
+ protected _jsonConfig: ConfigModel;
  /**
   * When everything is ready to use
   */
@@ -184,7 +186,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
       e.Event = evt;
       e.Name = name;
 
-   this.optionSelected(evt);
+  // this.optionSelected(evt);
   }
 
   /**
@@ -201,7 +203,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     e.Event = evt;
     e.Name = name;
 
-   this.optionSelected(evt);
+   this.optionSelected();
   }
 
   /**
@@ -218,9 +220,20 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
    * @param evt selection event
    */
   protected optionSelected(evt?: Event): void {
-    this.value = this.SelectControl.value;
+
+    /**
+     * Remove select all value
+     */
+    if (Array.isArray(this.SelectControl.value)) {
+      this.value = this.SelectControl.value.filter((item: SelectSourceModel) => {
+        return item.Key.toUpperCase() !== 'SELECT ALL';
+      });
+    } else {
+      this.value = this.SelectControl.value;
+    }
+
     this.onChange(this.value);
-    this.SelectedEvent.emit(this.value);
+   // this.SelectedEvent.emit(this.value);
   }
 
 /**
@@ -251,8 +264,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     * Check the select all option when all selections are checked
     */
     protected toggleSelectAll(): void {
-      if (this.SelectAllOptionControl.selected) {
-        this.SelectAllOptionControl.deselect();
+      if (this.SelectAllOptionControl) {
+        if (this.SelectAllOptionControl.selected) {
+          this.SelectAllOptionControl.deselect();
+        }
       }
 
       if (this.SelectControl.value.length === this.Config.Source.length) {
