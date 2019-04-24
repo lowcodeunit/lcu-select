@@ -24,9 +24,9 @@ public static readonly SELECT_VALS: Array<SelectSourceModel> = [
 
 public static readonly JSON_CONFIG: ConfigModel = {
     'MultiSelect': {
-      'DefaultSelectAll': false,
-      'Enable': false,
-      'SelectAll': false
+      'DefaultSelectAll': true,
+      'Enable': true,
+      'SelectAll': true
     },
     'Source':
       [
