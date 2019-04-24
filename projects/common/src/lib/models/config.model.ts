@@ -16,7 +16,6 @@ export class ConfigModel {
   /**
    * Constructor for select component
    */
-
    constructor () {
 
     // initialize a new multiselect object

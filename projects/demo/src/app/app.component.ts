@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Constants } from './constants/constants';
-import { EventModel, ConfigModel } from '@lowcodeunit/lcu-select-common';
+import { ConfigModel, EventModel } from '@lowcodeunit/lcu-select-common';
 
 @Component({
   selector: 'lcu-root',
@@ -10,16 +10,17 @@ import { EventModel, ConfigModel } from '@lowcodeunit/lcu-select-common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'lcu-select demo';
+  public title: string = 'lcu-select demo';
 
 
   /**
    * Setup config for selection component
    */
   public DemoConfig: ConfigModel;
+  public JSONConfig: ConfigModel;
   public Form: FormGroup;
 
-/**
+  /**
    * Access ConditionVariableNames field
    */
   public get LCUSelect(): AbstractControl {
@@ -32,25 +33,28 @@ export class AppComponent implements OnInit {
       lcuSelect: new FormControl('', { validators: Validators.required })
     });
 
-    this.DemoConfig = new ConfigModel();
-    this.DemoConfig.MultiSelect.Enable = true;
-    this.DemoConfig.MultiSelect.SelectAll = true;
-    this.DemoConfig.MultiSelect.DefaultSelectAll = true;
+    this.JSONConfig = Constants.JSON_CONFIG;
 
-    this.DemoConfig.Source = Constants.SELECT_VALS;
+    // this.DemoConfig = new ConfigModel();
+    // this.DemoConfig.MultiSelect.Enable = true;
+    // this.DemoConfig.MultiSelect.SelectAll = true;
+    // this.DemoConfig.MultiSelect.DefaultSelectAll = true;
+
+    // this.DemoConfig.Source = Constants.SELECT_VALS;
 
     this.onChange();
   }
 
     protected onChange(): void {
 
-      // use distinctUntilChange(), so we don't get multiple change events
+      // use distinctUntilChange(), prevent multiple change events
       this.LCUSelect.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe(val => {
         console.log('onChange app', val);
       });
     }
+
   /**
    *
    * @param evt boolen for when selection is open or closed

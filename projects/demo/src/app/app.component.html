@@ -6,13 +6,12 @@
     novalidate>
     <div fxLayout="column" fxLayoutAlign="center center" class="m-10">
       <mat-card>
-        <mat-card-title>LCU-Select Component</mat-card-title>
         <lcu-select
-          [Config]="DemoConfig"
-          Placeholder="Demo Select"
+          [Config]="JSONConfig"
+          Placeholder="LCU-Select"
           formControlName="lcuSelect"
           (SelectOpened)="SelectionOpened($event)"
-          (SelectedEvent)="OptionSelected($event)">
+          (SelectOptionSelected)="OptionSelected($event)">
         </lcu-select>
         <!-- <mat-hint *ngIf="GenericSelect.valid">Select at least one option</mat-hint> -->
       <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
