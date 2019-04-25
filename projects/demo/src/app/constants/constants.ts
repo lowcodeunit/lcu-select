@@ -28,6 +28,7 @@ public static readonly JSON_CONFIG: ConfigModel = {
       'Enable': true,
       'SelectAll': true
     },
+    'DisplayProperty': 'Key',
     'Source':
       [
         {Key: 'Temperature', Value: 't'},

@@ -20,14 +20,14 @@
         style="background-color:rgb(221, 221, 221)"
         *ngIf="Config.MultiSelect.SelectAll"
         #SelectAllOptionControl [value]="SelectAllObj"
-        (click)="SelectAllHandler()">{{ SelectAllObj['Key'] }}
+        (click)="SelectAllHandler()">{{ SelectAllObj[Config.DisplayProperty] }}
       </mat-option>
       <mat-divider style="margin-bottom: 10px"></mat-divider>
 
       <!--All other selectable options-->
-      <mat-option *ngFor="let option of Config.Source"
-        #SelectOptions [value]="option"
-        (click)="SelectOptionsHandler()">{{ option['Key'] }}
+      <mat-option *ngFor="let option of Config.Source" [value]="option"
+        #SelectOptions
+        (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
       </mat-option>
 
   </mat-select>

@@ -4,6 +4,11 @@ import { SelectSourceModel } from './select-source.model';
 export class ConfigModel {
 
   /**
+   * Display property
+   */
+  public DisplayProperty: string;
+
+  /**
    * Multi select options
    */
   public MultiSelect: MultiSelectModel;
