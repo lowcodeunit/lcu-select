@@ -1,21 +1,40 @@
 
 <!-- <router-outlet></router-outlet> -->
-<div fxLayout="column">
+<div>
   <form
+    fxLayout="row"
     [formGroup]="Form"
     novalidate>
-    <div fxLayout="column" fxLayoutAlign="center center" class="m-10">
-      <mat-card>
-        <lcu-select
+    <div fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
+        <mat-dialog-content fxLayout="column" style="width:100%;">
+            <lcu-select
+              [Config]="JSONConfig"
+              Placeholder="LCU-Select"
+              formControlName="lcuSelect"
+              (SelectOpened)="SelectionOpened($event)"
+              (SelectOptionSelected)="OptionSelected($event)">
+            </lcu-select>
+        <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
+      </mat-dialog-content>
+    <!-- <mat-card fxFlex> -->
+      <!-- <mat-dialog-content fxLayout="column" style="width:100%;">
+        <lcu-mat-lcu-select
+          style="width:100%"
           [Config]="JSONConfig"
           Placeholder="LCU-Select"
           formControlName="lcuSelect"
           (SelectOpened)="SelectionOpened($event)"
-          (SelectOptionSelected)="OptionSelected($event)">
-        </lcu-select>
-        <!-- <mat-hint *ngIf="GenericSelect.valid">Select at least one option</mat-hint> -->
+          (SelectOptionSelected)="OptionSelected()">
+        </lcu-mat-lcu-select>
       <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
-    </mat-card>
+    </mat-dialog-content> -->
+
+<!-- </mat-card> -->
+      <!-- </mat-dialog-content> -->
+
+      <!-- <mat-form-field>
+        <lcu-rec-mat-select></lcu-rec-mat-select>
+      </mat-form-field> -->
     </div>
     <!-- <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
       <button mat-raised-button color="primary" [disabled]="Form.enabled" (click)="EnableForm()">Enable</button>
