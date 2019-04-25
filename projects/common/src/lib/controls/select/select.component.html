@@ -25,8 +25,8 @@
       <mat-divider style="margin-bottom: 10px"></mat-divider>
 
       <!--All other selectable options-->
-      <mat-option *ngFor="let option of Config.Source"
-        #SelectOptions [value]="option"
+      <mat-option *ngFor="let option of Config.Source" [value]="option"
+        #SelectOptions
         (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
       </mat-option>
 

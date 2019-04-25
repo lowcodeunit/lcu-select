@@ -116,8 +116,6 @@ get Config(): ConfigModel {
  */
 protected _config: ConfigModel;
 
-protected _jsonConfig: ConfigModel;
-
 /**
 * When everything is ready to use
 */
@@ -230,8 +228,7 @@ protected optionSelected(evt?: Event): void {
       }
     }
 
-   // if (this.SelectControl.value.length === this.Config.Source.length) {
-    if (this.SelectControl.value.length && this.SelectControl.value.length === this.value.length) {
+   if (this.SelectControl.value.length === this.Config.Source.length) {
       this.SelectAllOptionControl.select();
     }
   }
@@ -297,6 +294,7 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
  */
 writeValue(value: any): void {
   this.value = value;
+  this.Config.Source = value;
   this.componentInitialized();
 }
 
