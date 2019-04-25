@@ -12,7 +12,6 @@ import { ConfigModel, EventModel } from '@lowcodeunit/lcu-select-common';
 export class AppComponent implements OnInit {
   public title: string = 'lcu-select demo';
 
-
   /**
    * Setup config for selection component
    */
@@ -34,6 +33,7 @@ export class AppComponent implements OnInit {
     });
 
     this.JSONConfig = Constants.JSON_CONFIG;
+    this.LCUSelect.setValue(this.JSONConfig.Source);
 
     // this.DemoConfig = new ConfigModel();
     // this.DemoConfig.MultiSelect.Enable = true;
@@ -76,8 +76,8 @@ export class AppComponent implements OnInit {
    *
    * @param evt event model for selected item
    */
-  public SelectAllSelected(evt: EventModel): void {
-    console.log('select all event', evt);
+  public SelectAllSelected(): void {
+    console.log('select all event');
   }
 
   /**
@@ -85,8 +85,8 @@ export class AppComponent implements OnInit {
    *
    * @param evt event model for selected item
    */
-  public OptionSelected(evt: EventModel): void {
-    console.log('option selected, app', evt);
+  public OptionSelected(): void {
+    console.log('option selected, app');
   }
 
 }

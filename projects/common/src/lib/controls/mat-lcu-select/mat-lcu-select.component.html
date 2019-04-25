@@ -16,9 +16,7 @@
       </mat-select-trigger>
 
     <!--'Select All' option with divider-->
-      <mat-option
-        style="background-color:rgb(221, 221, 221)"
-        *ngIf="Config.MultiSelect.SelectAll"
+      <mat-option *ngIf="Config.MultiSelect.SelectAll"
         #SelectAllOptionControl [value]="SelectAllObj"
         (click)="SelectAllHandler()">{{ SelectAllObj['Key'] }}
       </mat-option>

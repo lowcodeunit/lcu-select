@@ -4,16 +4,17 @@ import { MaterialModule } from './modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectComponent } from './controls/select/select.component';
+import { MatLcuSelectComponent } from './controls/mat-lcu-select/mat-lcu-select.component';
 
 @NgModule({
-  declarations: [SelectComponent],
+  declarations: [SelectComponent, MatLcuSelectComponent],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  exports: [MaterialModule, SelectComponent],
-  entryComponents: [SelectComponent]
+  exports: [MaterialModule, SelectComponent, MatLcuSelectComponent],
+  entryComponents: [SelectComponent, MatLcuSelectComponent]
 })
 export class LcuSelectModule { }
