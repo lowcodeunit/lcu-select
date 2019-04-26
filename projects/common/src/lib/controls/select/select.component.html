@@ -9,7 +9,7 @@
 
     <!--This tells us the first item and how many additional items are selected-->
       <mat-select-trigger *ngIf="SelectControl.value && SelectControl.value.length">
-          {{ SelectControl.value.length > 0 ? SelectControl.value[0]['Key'] : '' }}
+          {{ SelectControl.value.length > 0 ? SelectControl.value[0][Config.DisplayProperty] : '' }}
           <span *ngIf="SelectControl.value.length > 1">
               (+{{SelectControl.value.length - 1}} others)
           </span>

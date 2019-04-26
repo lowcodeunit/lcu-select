@@ -288,6 +288,7 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
 
 /**
  * Implementation of the writeValue function given through the ControlValueAccessor class.
+ *
  * Writes the dropdown value to the element.
  *
  * @param value The value to write.
@@ -295,7 +296,7 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
 writeValue(value: any): void {
   this.value = value;
 
-  // set source to value
+  // set config source
   this.Config.Source = value;
   this.componentInitialized();
 }
