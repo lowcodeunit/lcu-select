@@ -294,6 +294,8 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
  */
 writeValue(value: any): void {
   this.value = value;
+
+  // set source to value
   this.Config.Source = value;
   this.componentInitialized();
 }
