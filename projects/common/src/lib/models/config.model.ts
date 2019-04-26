@@ -16,7 +16,8 @@ export class ConfigModel {
   /**
    * Datasource for select
    */
-  public Source: Array<SelectSourceModel>;
+  // public Source: Array<SelectSourceModel>;
+  public Source: any;
 
   /**
    * Constructor for select component
