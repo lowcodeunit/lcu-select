@@ -16,7 +16,7 @@
               Placeholder="LCU-Select"
               formControlName="lcuSelect"
               (SelectOpened)="SelectionOpened($event)"
-              (SelectOptionSelected)="OptionSelected()">
+              (SelectOptionSelected)="OptionSelected($event)">
             </lcu-select>
         <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
       </mat-dialog-content>
