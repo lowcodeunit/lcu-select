@@ -25,11 +25,38 @@
       <mat-divider style="margin-bottom: 10px"></mat-divider>
 
       <!--All other selectable options-->
-      <mat-option *ngFor="let option of Config.Source" [value]="option"
-        #SelectOptions
-        (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
-      </mat-option>
+      <div *ngIf="Config.MultiSelect.Enable">
+        <mat-option *ngFor="let option of Config.Source" [value]="option"
+          #SelectOptions
+          (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
+        </mat-option>
+      </div>
+
+      <div *ngIf="!Config.MultiSelect.Enable">
+        <!--[value]="DefaultSelection(Config.Source)"-->
+        <mat-option *ngFor="let option of Config.Source" [value]="option"
+          #SelectOptions
+          (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
+        </mat-option>
+      </div>
 
   </mat-select>
 </mat-form-field>
+
+<!-- <mat-form-field style="width:100%;" *ngIf="!Config.MultiSelect.Enable">
+    <mat-select
+      style="width:100%;"
+      #SelectControl
+      [placeholder]="Placeholder ? Placeholder : ''"
+      (openedChange)="OpenedChangeHandler($event)"
+      [disabled]="Disabled">
+        <mat-option *ngFor="let option of Config.Source" [value]="option"
+          #SelectOptions
+          (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
+        </mat-option>
+
+    </mat-select>
+  </mat-form-field> -->
+
+
 

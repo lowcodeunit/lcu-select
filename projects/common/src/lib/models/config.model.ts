@@ -4,6 +4,10 @@ import { SelectSourceModel } from './select-source.model';
 export class ConfigModel {
 
   /**
+   * Default selection
+   */
+  public DefaultSelection?: string;
+  /**
    * Display property
    */
   public DisplayProperty: string;
