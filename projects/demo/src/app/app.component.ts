@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
    */
   public DemoConfig: ConfigModel;
   public JSONConfig: ConfigModel;
+  public ConditionsConfig: ConfigModel;
   public Form: FormGroup;
+
+  public ConditionsData: any;
 
   /**
    * Access ConditionVariableNames field
@@ -26,21 +29,37 @@ export class AppComponent implements OnInit {
     return this.Form.get('lcuSelect');
   }
 
+  public get LCUConditions(): AbstractControl {
+    return this.Form.get('lcuConditions');
+  }
+
+  public get TestSelect(): AbstractControl {
+    return this.Form.get('testSelect');
+  }
+
   public ngOnInit(): void {
 
     this.Form = new FormGroup({
-      lcuSelect: new FormControl('', { validators: Validators.required })
+      lcuSelect: new FormControl('', { validators: Validators.required }),
+      lcuConditions: new FormControl('', { validators: Validators.required }),
+      testSelect: new FormControl('', { validators: Validators.required })
     });
 
     this.JSONConfig = Constants.JSON_CONFIG;
-    this.LCUSelect.setValue(this.JSONConfig.Source);
+   // this.LCUSelect.setValue(this.JSONConfig.Source);
 
-    // this.DemoConfig = new ConfigModel();
-    // this.DemoConfig.MultiSelect.Enable = true;
-    // this.DemoConfig.MultiSelect.SelectAll = true;
-    // this.DemoConfig.MultiSelect.DefaultSelectAll = true;
+    this.ConditionsData = Constants.CONDITION_VARIABLES;
 
-    // this.DemoConfig.Source = Constants.SELECT_VALS;
+    Constants.FORECAST_MODEL_CONFIG.Source = this.ConditionsData;
+    this.ConditionsConfig = Constants.FORECAST_MODEL_CONFIG;
+
+    // this.LCUConditions.setValue(this.ConditionsData);
+    // this.TestSelect.setValue(this.ConditionsData);
+
+    const toSelect = this.ConditionsData.find((c: any) => c.Name.toUpperCase() === 'NAME 2');
+
+     // this.LCUConditions.setValue(toSelect);
+    // this.TestSelect.setValue(toSelect);
 
     this.onChange();
   }
@@ -48,11 +67,11 @@ export class AppComponent implements OnInit {
     protected onChange(): void {
 
       // use distinctUntilChange(), prevent multiple change events
-      this.LCUSelect.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe(val => {
-        console.log('onChange app', val);
-      });
+      // this.LCUSelect.valueChanges
+      // .pipe(distinctUntilChanged())
+      // .subscribe(val => {
+      //   console.log('onChange app', val);
+      // });
     }
 
   /**
@@ -85,8 +104,8 @@ export class AppComponent implements OnInit {
    *
    * @param evt event model for selected item
    */
-  public OptionSelected(): void {
-    console.log('option selected, app');
+  public OptionSelected(evt: Event): void {
+   // console.log('option selected, app', evt);
   }
 
 }

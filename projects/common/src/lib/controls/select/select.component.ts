@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MatOption, MatSelect } from '@angular/material';
@@ -28,7 +28,7 @@ import { EventModel } from '../../models/event.model';
   }]
 })
 
-export class SelectComponent implements OnInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, ControlValueAccessor, DoCheck {
 
 /***************************** */
 // ** INPUTS */
@@ -106,6 +106,8 @@ get Config(): ConfigModel {
 */
 @ViewChild('SelectControl') SelectControl: MatSelect;
 
+@ViewChild('SelectOptions') SelectOptions: MatOption;
+
 
 /***************************** */
 // ** PROPERTIES */
@@ -127,7 +129,7 @@ protected isReady: boolean;
 public SelectAllObj: SelectSourceModel = new SelectSourceModel('Select All', null);
 
 /** Fired when any changes to the model are detected */
-public onChange: any = () => { };
+public onChange: any = () => {};
 
 /** Fired when the component is blurred. TODO: This currently doesn't work - need to figure out why and fix it */
 public onTouched: any = () => { };
@@ -157,7 +159,14 @@ constructor(private changeDetector: ChangeDetectorRef) { }
 public ngOnInit(): void {
   this.isReady = true;
 
- // this.componentInitialized();
+  console.log('asdas', this.SelectOptions);
+
+  this.componentInitialized();
+}
+
+public ngDoCheck(): void {
+  console.log('ngDoCheck', this.value);
+  console.log('ngDoCheck', this.SelectControl.value);
 }
 
 /**
@@ -209,11 +218,11 @@ protected optionSelected(evt?: Event): void {
       return item.Key.toUpperCase() !== 'SELECT ALL';
     });
   } else {
-    this.value = this.SelectControl.value;
+   this.value = this.SelectControl.value;
   }
 
-  this.onChange(this.value);
   this.SelectedEvent.emit(this.value);
+  this.onChange(this.value);
 }
 
   /**
@@ -297,7 +306,7 @@ writeValue(value: any): void {
   this.value = value;
 
   // set config source
-  this.Config.Source = value;
+ // this.Config.Source = value;
   this.componentInitialized();
 }
 
@@ -340,7 +349,7 @@ public emitSelected(val: Array<EventModel>) {
   this.SelectedEvent.emit(val);
 
   // prevent double emit
-  this.SelectedEvent.complete();
+ // this.SelectedEvent.complete();
 }
 
 }
