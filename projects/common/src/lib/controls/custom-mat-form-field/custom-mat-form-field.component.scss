@@ -1,0 +1,28 @@
+.mat-form-field-type-richeditor.mat-form-field-can-float .mat-form-field-label-wrapper, .mat-form-field-type-file.mat-form-field-can-float .mat-form-field-label-wrapper {
+  top: -22px;
+}
+.mat-form-field-type-richeditor.mat-form-field-should-float .mat-form-field-label-wrapper, .mat-form-field-type-file.mat-form-field-should-float .mat-form-field-label-wrapper {
+  top: -8px;
+}
+
+div {
+  display: flex;
+}
+
+input {
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  text-align: center;
+}
+
+span {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+:host.floating span {
+  opacity: 1;
+}
