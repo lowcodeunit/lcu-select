@@ -3,7 +3,7 @@ import { ConfigModel } from 'projects/common/src/lcu.api';
 
 // @dynamic
 /**
- * @dynamic
+ * @dynamic need this because there are static memebers
  */
 
 export class Constants {

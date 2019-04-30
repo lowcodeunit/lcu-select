@@ -142,6 +142,7 @@ get value() {
 /** Setter for the value property */
 set value(val) {
   this._value = val;
+  // this.SelectControl.value = val;
   this.onChange(val);
   this.onTouched();
   if (val) { this.emitSelected(val); }
@@ -278,7 +279,7 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
    // update varNames value
    this.SelectControl.value = arr;
  } else {
-  this.SelectControl.value = [];
+  this.SelectControl.value = this.value;
  }
 
  this.optionSelected();

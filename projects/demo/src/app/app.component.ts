@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Constants } from './constants/constants';
-import { ConfigModel, EventModel } from '@lowcodeunit/lcu-select-common';
+import { ConfigModel, EventModel, Constantss } from '@lowcodeunit/lcu-select-common';
 
 @Component({
   selector: 'lcu-root',
@@ -56,9 +56,9 @@ export class AppComponent implements OnInit {
     // this.LCUConditions.setValue(this.ConditionsData);
     // this.TestSelect.setValue(this.ConditionsData);
 
-    const toSelect = this.ConditionsData.find((c: any) => c.Name.toUpperCase() === 'NAME 2');
+    const toSelect = this.ConditionsData.find((c: any) => c.Name.toUpperCase() === 'NAME 3');
 
-     // this.LCUConditions.setValue(toSelect);
+     this.LCUConditions.setValue(toSelect);
     // this.TestSelect.setValue(toSelect);
 
     this.onChange();
