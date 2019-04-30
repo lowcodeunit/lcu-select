@@ -22,19 +22,17 @@
       </mat-option>
       <mat-divider style="margin-bottom: 10px"></mat-divider>
 
-      <div *ngIf="Config.MultiSelect.Enable">
+      <!-- <div *ngIf="Config.MultiSelect.Enable">
         <mat-option *ngFor="let option of Config.Source" [value]="option"
           #SelectOptions
           (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
         </mat-option>
-      </div>
+      </div> -->
 
-      <div *ngIf="!Config.MultiSelect.Enable">
         <mat-option *ngFor="let option of Config.Source" [value]="option"
           #SelectOptions
           (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
         </mat-option>
-      </div>
 
   </mat-select>
 </mat-form-field>

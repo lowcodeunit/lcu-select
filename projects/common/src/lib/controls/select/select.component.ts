@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MatOption, MatSelect } from '@angular/material';
@@ -28,7 +28,7 @@ import { EventModel } from '../../models/event.model';
   }]
 })
 
-export class SelectComponent implements OnInit, ControlValueAccessor, DoCheck {
+export class SelectComponent implements OnInit, ControlValueAccessor {
 
 /***************************** */
 // ** INPUTS */
@@ -160,14 +160,7 @@ constructor(private changeDetector: ChangeDetectorRef) { }
 public ngOnInit(): void {
   this.isReady = true;
 
-  console.log('asdas', this.SelectOptions);
-
   this.componentInitialized();
-}
-
-public ngDoCheck(): void {
-  console.log('ngDoCheck', this.value);
-  console.log('ngDoCheck', this.SelectControl.value);
 }
 
 /**
