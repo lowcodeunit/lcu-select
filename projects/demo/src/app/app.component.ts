@@ -12,19 +12,18 @@ import { ConfigModel, EventModel, Constantss } from '@lowcodeunit/lcu-select-com
 export class AppComponent implements OnInit {
   public title: string = 'lcu-select demo';
 
-  /**
-   * Setup config for selection component
-   */
   public DemoConfig: ConfigModel;
   public JSONConfig: ConfigModel;
   public ConditionsConfig: ConfigModel;
+  public ForecastModelConfig: ConfigModel;
   public Form: FormGroup;
-
+  public ForecastModelList: any = {};
   public ConditionsData: any;
 
-  /**
-   * Access ConditionVariableNames field
-   */
+  public get ForecastModelType(): AbstractControl {
+    return this.Form.get('SearchFormControls.forecastModelType');
+  }
+
   public get LCUSelect(): AbstractControl {
     return this.Form.get('lcuSelect');
   }
@@ -33,35 +32,42 @@ export class AppComponent implements OnInit {
     return this.Form.get('lcuConditions');
   }
 
-  public get TestSelect(): AbstractControl {
-    return this.Form.get('testSelect');
-  }
-
   public ngOnInit(): void {
 
     this.Form = new FormGroup({
-      lcuSelect: new FormControl('', { validators: Validators.required }),
-      lcuConditions: new FormControl('', { validators: Validators.required }),
-      testSelect: new FormControl('', { validators: Validators.required })
+      SearchFormControls: new FormGroup({
+        forecastModelType: new FormControl('', {validators: Validators.required})
+      }),
+      lcuSelect: new FormControl('forced initial value for required validator', { validators: Validators.required }),
+      lcuConditions: new FormControl('', { validators: Validators.required })
     });
 
     this.JSONConfig = Constants.JSON_CONFIG;
-   // this.LCUSelect.setValue(this.JSONConfig.Source);
 
     this.ConditionsData = Constants.CONDITION_VARIABLES;
 
-    Constants.FORECAST_MODEL_CONFIG.Source = this.ConditionsData;
-    this.ConditionsConfig = Constants.FORECAST_MODEL_CONFIG;
+    Constants.CONDITIONS_MODEL_CONFIG.Source = this.ConditionsData;
+    this.ConditionsConfig = Constants.CONDITIONS_MODEL_CONFIG;
 
-    // this.LCUConditions.setValue(this.ConditionsData);
-    // this.TestSelect.setValue(this.ConditionsData);
+    this.ForecastModelConfig = Constants.FORECAST_MODEL_CONFIG;
 
     const toSelect = this.ConditionsData.find((c: any) => c.Name.toUpperCase() === 'NAME 3');
 
      this.LCUConditions.setValue(toSelect);
-    // this.TestSelect.setValue(toSelect);
 
+    this.LoadDataSourceTypes();
     this.onChange();
+  }
+
+  public LoadDataSourceTypes() {
+
+    this.ForecastModelList = Constants.LoadDataSources();
+    this.ForecastModelConfig.Source = this.ForecastModelList;
+
+    const select = this.ForecastModelList.find((c: any) => c.Name.toUpperCase() === 'FATHYM GROUND TRUTH FORECAST');
+
+    this.ForecastModelType.setValue(select);
+
   }
 
     protected onChange(): void {
