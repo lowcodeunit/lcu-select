@@ -18,7 +18,7 @@
               (SelectOpened)="SelectionOpened($event)"
               (SelectOptionSelected)="OptionSelected($event)">
             </lcu-select>
-        <mat-error *ngIf="LCUSelect.hasError('required') && LCUSelect.value">Selection Required</mat-error>
+        <mat-error *ngIf="LCUSelect.hasError('required')">Selection Required</mat-error>
       </mat-dialog-content>
     </div>
     <div fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
@@ -31,6 +31,21 @@
           </lcu-select>
       <mat-error *ngIf="LCUConditions.hasError('required')">Selection Required</mat-error>
     </mat-dialog-content>
+  </div>
+  <div fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10" formGroupName="SearchFormControls">
+    <mat-dialog-content fxLayout="column" style="width:100%;">
+      <lcu-select
+        id="forecastModelType"
+        name="forecastModelType"
+        formControlName="forecastModelType"
+        [Config]="ForecastModelConfig"
+        [Placeholder]="ForecastModelType.invalid ? 'Select Forecast Model' : ''">
+      </lcu-select>
+      <mat-error *ngIf="ForecastModelType.hasError('required')">A forecast model is required</mat-error>
+    </mat-dialog-content>
+  </div>
+  <div class="mt-10" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+    <button mat-raised-button color="primary" [disabled]="!Form.valid">Search</button>
   </div>
   </form>
 

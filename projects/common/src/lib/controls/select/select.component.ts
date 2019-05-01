@@ -142,7 +142,6 @@ get value() {
 /** Setter for the value property */
 set value(val) {
   this._value = val;
-  // this.SelectControl.value = val;
   this.onChange(val);
   this.onTouched();
   if (val) { this.emitSelected(val); }
@@ -159,7 +158,6 @@ constructor(private changeDetector: ChangeDetectorRef) { }
 
 public ngOnInit(): void {
   this.isReady = true;
-
   this.componentInitialized();
 }
 
@@ -258,20 +256,28 @@ protected initialSelectionOptions(): void {
  }
 
 /**
-*
-* @param val configuration object or json
+* Set select values
 */
 protected selectValues(): void {
 
+  // if select all option and it's selected
 if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
+
    // make a new copy of source array
   const arr: Array<SelectSourceModel> = [...this.Config.Source];
+
    // add select all option to the front of the variable names array
    arr.unshift(this.SelectAllObj);
 
-   // update varNames value
+   // set value as multiselect options
    this.SelectControl.value = arr;
+
+   // if select all option and it's unselected set value to nothing
+ } else if (this.SelectAllOptionControl && this.SelectAllOptionControl.deselect) {
+  this.SelectControl.value = [];
  } else {
+
+   // when setting a single value
   this.SelectControl.value = this.value;
  }
 
@@ -288,7 +294,6 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
 // ** CHANGE EVENT - needed in order for this to work as a form control in reactive forms */
 /***************************** */
 
-
 /**
  * Implementation of the writeValue function given through the ControlValueAccessor class.
  *
@@ -298,9 +303,6 @@ if (this.SelectAllOptionControl && this.SelectAllOptionControl.selected) {
  */
 writeValue(value: any): void {
   this.value = value;
-
-  // set config source
- // this.Config.Source = value;
   this.componentInitialized();
 }
 
@@ -343,7 +345,7 @@ public emitSelected(val: Array<EventModel>) {
   this.SelectedEvent.emit(val);
 
   // prevent double emit
- // this.SelectedEvent.complete();
+  this.SelectedEvent.complete();
 }
 
 }

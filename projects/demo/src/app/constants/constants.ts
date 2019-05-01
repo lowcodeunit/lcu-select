@@ -59,11 +59,57 @@ public static readonly JSON_CONFIG: ConfigModel = {
 
   };
 
+  public static readonly CONDITIONS_MODEL_CONFIG = {
+    'MultiSelect': {
+      'DefaultSelectAll': false,
+      'Enable': false,
+      'SelectAll': false
+    },
+    'DisplayProperty': 'Name',
+    'Source': []
+
+  };
+
   public static readonly CONDITION_VARIABLES = [
     { Name: 'Name 1', URLPrefix: 'Prefix 1', FcstCfg: 'FcstCfg 1', Host: 'Host 1', VarNames: 'VarNames 1' },
     { Name: 'Name 2', URLPrefix: 'Prefix 2', FcstCfg: 'FcstCfg 2', Host: 'Host 2', VarNames: 'VarNames 2' },
     { Name: 'Name 3', URLPrefix: 'Prefix 3', FcstCfg: 'FcstCfg 3', Host: 'Host 3', VarNames: 'VarNames 3' },
     { Name: 'Name 4', URLPrefix: 'Prefix 4', FcstCfg: 'FcstCfg 4', Host: 'Host 4', VarNames: 'VarNames 4' },
   ];
+
+  public static LoadDataSources(): Array<object> {
+    // should fetch these from server in the future
+
+    return [
+      {
+        Name: 'HRRR',
+        URLPrefix: '/fcst',
+        FcstCfg: 'hrrr_config',
+        Host: 'http://fathymwx.westus.cloudapp.azure.com',
+        VarNames: ''
+      },
+      {
+        Name: 'GFS',
+        URLPrefix: '/fcst',
+        FcstCfg: 'gfs_config',
+        Host: 'http://fathymwx.westus.cloudapp.azure.com',
+        VarNames: ''
+      },
+      {
+        Name: 'Fathym Ground Truth Forecast',
+        URLPrefix: '/blend',
+        FcstCfg: null,
+        Host: 'http://fathymwx.westus.cloudapp.azure.com',
+        VarNames: ''
+      },
+      {
+        Name: 'MWAVE',
+        URLPrefix: '/fcst',
+        FcstCfg: 'mwave_config',
+        Host: 'http://localhost',
+        VarNames: null
+      }
+    ];
+  }
 }
 
