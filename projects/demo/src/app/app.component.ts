@@ -11,7 +11,6 @@ import { ConfigModel, EventModel, Constantss } from '@lowcodeunit/lcu-select-com
 })
 export class AppComponent implements OnInit {
   public title: string = 'lcu-select demo';
-
   public DemoConfig: ConfigModel;
   public JSONConfig: ConfigModel;
   public ConditionsConfig: ConfigModel;
