@@ -6,7 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LcuSelectModule } from '@lowcodeunit/lcu-select-common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatMenuModule } from '@angular/material';
+// import { MatMenuModule } from '@angular/material';
+import { FathymSharedModule } from '@lcu-ide/common';
+import { MaterialModule } from '@lcu-ide/common/lib/modules/material.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { MatMenuModule } from '@angular/material';
     AppRoutingModule,
     LcuSelectModule,
     ReactiveFormsModule,
-    MatMenuModule
+    FathymSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

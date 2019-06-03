@@ -1,8 +1,9 @@
+// import { MaterialModule, MatOption, MatSelect } from '@lcu-ide/common/lib/modules/material.module';
+
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MatOption, MatSelect } from '@angular/material';
-
 import { SelectSourceModel } from '../../models/select-source.model';
 import { ConfigModel } from '../../models/config.model';
 import { EventModel } from '../../models/event.model';
@@ -75,22 +76,26 @@ get Config(): ConfigModel {
 /**
  * Event fired when select is opened or closed, passing boolean value
  */
-@Output() public SelectOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
+@Output()
+public SelectOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 /**
  * Event for when the select all option is selected
  */
-@Output() public SelectAllSelected: EventEmitter<EventModel> = new EventEmitter<EventModel>();
+@Output()
+public SelectAllSelected: EventEmitter<EventModel> = new EventEmitter<EventModel>();
 
 /**
  * Event for when a option is selected
  */
-@Output() public SelectOptionSelected: EventEmitter<EventModel> = new EventEmitter<EventModel>();
+@Output()
+public SelectOptionSelected: EventEmitter<EventModel> = new EventEmitter<EventModel>();
 
 /**
  * Event for when something is selected
  */
-@Output() public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<EventModel>>();
+@Output()
+public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<EventModel>>();
 
 /***************************** */
 // ** VIEWCHILDREN */
@@ -150,7 +155,7 @@ set value(val) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-constructor(private changeDetector: ChangeDetectorRef) { }
+constructor(protected changeDetector: ChangeDetectorRef) { }
 
 /***************************** */
 // ** LIFECYCLE */
