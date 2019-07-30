@@ -4,6 +4,15 @@ import { SelectSourceModel } from './select-source.model';
 export class ConfigModel {
 
   /**
+   * Default selection
+   */
+  public DefaultSelection?: string;
+  /**
+   * Display property
+   */
+  public DisplayProperty: string;
+
+  /**
    * Multi select options
    */
   public MultiSelect: MultiSelectModel;
@@ -16,7 +25,6 @@ export class ConfigModel {
   /**
    * Constructor for select component
    */
-
    constructor () {
 
     // initialize a new multiselect object

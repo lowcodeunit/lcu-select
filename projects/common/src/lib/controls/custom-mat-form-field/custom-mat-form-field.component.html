@@ -1,4 +1,4 @@
-<mat-form-field style="width:100%;">
+<!-- <mat-form-field style="width:100%;">
   <mat-select
     style="width:100%;"
     #SelectControl
@@ -7,12 +7,14 @@
     (openedChange)="OpenedChangeHandler($event)"
     [disabled]="Disabled">
 
+
       <mat-select-trigger *ngIf="SelectControl.value && SelectControl.value.length">
           {{ SelectControl.value.length > 0 ? SelectControl.value[0][Config.DisplayProperty] : '' }}
           <span *ngIf="SelectControl.value.length > 1">
               (+{{SelectControl.value.length - 1}} others)
           </span>
       </mat-select-trigger>
+
 
       <mat-option
         style="background-color:rgb(221, 221, 221)"
@@ -22,20 +24,23 @@
       </mat-option>
       <mat-divider style="margin-bottom: 10px"></mat-divider>
 
-      <!-- <div *ngIf="Config.MultiSelect.Enable">
-        <mat-option *ngFor="let option of Config.Source" [value]="option"
-          #SelectOptions
-          (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
-        </mat-option>
-      </div> -->
 
+      <div *ngIf="Config.MultiSelect.Enable">
         <mat-option *ngFor="let option of Config.Source" [value]="option"
           #SelectOptions
           (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
         </mat-option>
+      </div>
+
+      <div *ngIf="!Config.MultiSelect.Enable">
+        <mat-option *ngFor="let option of Config.Source" [value]="option"
+          #SelectOptions
+          (click)="SelectOptionsHandler()">{{ option[Config.DisplayProperty] }}
+        </mat-option>
+      </div>
 
   </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 
 <!-- <mat-form-field style="width:100%;" *ngIf="!Config.MultiSelect.Enable">
     <mat-select
@@ -51,6 +56,7 @@
 
     </mat-select>
   </mat-form-field> -->
+
 
 
 
