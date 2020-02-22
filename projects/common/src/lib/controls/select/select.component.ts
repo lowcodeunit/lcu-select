@@ -105,14 +105,14 @@ public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<E
 /**
 * Select all option
 */
-@ViewChild('SelectAllOptionControl') SelectAllOptionControl: MatOption;
+@ViewChild('SelectAllOptionControl', { static: false }) SelectAllOptionControl: MatOption;
 
 /**
 * Mat-Select
 */
-@ViewChild('SelectControl') SelectControl: MatSelect;
+@ViewChild('SelectControl', { static: false }) SelectControl: MatSelect;
 
-@ViewChild('SelectOptions') SelectOptions: MatOption;
+@ViewChild('SelectOptions', { static: false }) SelectOptions: MatOption;
 
 
 /***************************** */
