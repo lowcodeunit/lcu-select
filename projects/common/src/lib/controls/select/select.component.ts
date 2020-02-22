@@ -3,10 +3,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { MatOption, MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { SelectSourceModel } from '../../models/select-source.model';
 import { ConfigModel } from '../../models/config.model';
 import { EventModel } from '../../models/event.model';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'lcu-select',
@@ -104,14 +105,14 @@ public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<E
 /**
 * Select all option
 */
-@ViewChild('SelectAllOptionControl', {static: false}) SelectAllOptionControl: MatOption;
+@ViewChild('SelectAllOptionControl') SelectAllOptionControl: MatOption;
 
 /**
 * Mat-Select
 */
-@ViewChild('SelectControl', {static: false}) SelectControl: MatSelect;
+@ViewChild('SelectControl') SelectControl: MatSelect;
 
-@ViewChild('SelectOptions', {static: false}) SelectOptions: MatOption;
+@ViewChild('SelectOptions') SelectOptions: MatOption;
 
 
 /***************************** */
