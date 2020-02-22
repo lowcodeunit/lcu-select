@@ -38,11 +38,11 @@ export class CustomMatFormFieldComponent implements MatFormFieldControl<MyTel>, 
 
   static nextId = 0;
   parts: FormGroup;
-  stateChanges = new Subject<void>();
-  focused = false;
-  ngControl = null;
-  errorState = false;
-  controlType = 'lcu-custom-mat-form-field';
+  stateChanges: Subject<void> = new Subject<void>();
+  focused: boolean = false;
+  ngControl: any = null;
+  errorState: boolean = false;
+  controlType: string = 'lcu-custom-mat-form-field';
 
  @HostBinding() id = `lcu-custom-mat-form-field-input-${CustomMatFormFieldComponent.nextId}`;
 
