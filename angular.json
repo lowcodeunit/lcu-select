@@ -55,7 +55,7 @@
       },
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:build",
+          "builder": "ngx-build-browser:build",
           "options": {
             "outputPath": "dist/lcu",
             "index": "projects/lcu/src/index.html",
@@ -110,7 +110,7 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "ngx-build-browser:dev-server",
           "options": {
             "browserTarget": "lcu:build"
           },
@@ -127,7 +127,7 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "ngx-build-browser:karma",
           "options": {
             "main": "projects/lcu/src/test.ts",
             "polyfills": "projects/lcu/src/polyfills.ts",
