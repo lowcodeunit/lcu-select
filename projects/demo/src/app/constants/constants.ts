@@ -55,7 +55,7 @@ public static readonly JSON_CONFIG: ConfigModel = {
       'SelectAll': false
     },
     'DisplayProperty': 'Name',
-    'Source': []
+    'Source': new Array
 
   };
 
@@ -66,7 +66,7 @@ public static readonly JSON_CONFIG: ConfigModel = {
       'SelectAll': false
     },
     'DisplayProperty': 'Name',
-    'Source': []
+    'Source': new Array
 
   };
 
