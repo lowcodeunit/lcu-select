@@ -10,8 +10,9 @@ import { ConfigModel, EventModel, Constantss } from '@lowcodeunit/lcu-select-com
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title: string = 'lcu-select demo';
 
+  
+  public title: string = 'lcu-select demo';
   public DemoConfig: ConfigModel;
   public JSONConfig: ConfigModel;
   public ConditionsConfig: ConfigModel;
