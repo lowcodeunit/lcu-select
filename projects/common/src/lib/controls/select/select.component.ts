@@ -2,8 +2,9 @@
 
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
-import { MatOption, MatSelect } from '@angular/material';
 import { SelectSourceModel } from '../../models/select-source.model';
 import { ConfigModel } from '../../models/config.model';
 import { EventModel } from '../../models/event.model';
