@@ -78,6 +78,11 @@ export class AppComponent implements OnInit {
       // .subscribe(val => {
       //   console.log('onChange app', val);
       // });
+
+      this.LCUSelect.valueChanges.subscribe((val: any) => {
+        console.log('VALUE CHANGED');
+      })
+  
     }
 
   /**
