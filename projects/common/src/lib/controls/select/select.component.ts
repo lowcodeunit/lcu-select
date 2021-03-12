@@ -95,7 +95,8 @@ public SelectOptionSelected: EventEmitter<EventModel> = new EventEmitter<EventMo
 /**
  * Event for when something is selected
  */
-@Output()
+// tslint:disable-next-line:no-output-rename
+@Output('change')
 public SelectedEvent: EventEmitter<Array<EventModel>> = new EventEmitter<Array<EventModel>>();
 
 /***************************** */
@@ -135,7 +136,7 @@ protected isReady: boolean;
 public SelectAllObj: SelectSourceModel = new SelectSourceModel('Select All', null);
 
 /** Fired when any changes to the model are detected */
-public onChange: any = () => {};
+public onChange: any = () => {  };
 
 /** Fired when the component is blurred. TODO: This currently doesn't work - need to figure out why and fix it */
 public onTouched: any = () => { };
@@ -219,8 +220,8 @@ protected optionSelected(evt?: Event): void {
    this.value = this.SelectControl.value;
   }
 
-  this.SelectedEvent.emit(this.value);
   this.onChange(this.value);
+  this.SelectedEvent.emit(this.value);
 }
 
   /**
