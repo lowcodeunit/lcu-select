@@ -12,6 +12,9 @@ import { ConfigModel, EventModel, Constantss } from '@lowcodeunit/lcu-select-com
 export class AppComponent implements OnInit {
   public title: string = 'lcu-select demo';
 
+  public SearchFormControls: FormGroup;
+  public TestControls: FormGroup;
+
   public DemoConfig: ConfigModel;
   public JSONConfig: ConfigModel;
   public ConditionsConfig: ConfigModel;
@@ -25,11 +28,11 @@ export class AppComponent implements OnInit {
   }
 
   public get LCUSelect(): AbstractControl {
-    return this.Form.get('lcuSelect');
+    return this.Form.get('TestControls.lcuSelect');
   }
 
   public get LCUConditions(): AbstractControl {
-    return this.Form.get('lcuConditions');
+    return this.Form.get('TestControls.lcuConditions');
   }
 
   public ngOnInit(): void {
@@ -38,8 +41,10 @@ export class AppComponent implements OnInit {
       SearchFormControls: new FormGroup({
         forecastModelType: new FormControl('', {validators: Validators.required})
       }),
-      lcuSelect: new FormControl('forced initial value for required validator', { validators: Validators.required }),
-      lcuConditions: new FormControl('', { validators: Validators.required })
+      TestControls: new FormGroup({
+        lcuSelect: new FormControl('forced initial value for required validator', { validators: Validators.required }),
+        lcuConditions: new FormControl('', { validators: Validators.required })
+      })
     });
 
     this.JSONConfig = Constants.JSON_CONFIG;
@@ -59,6 +64,10 @@ export class AppComponent implements OnInit {
     this.onChange();
   }
 
+  public SelectionChanged(evt: Event): void {
+    
+  }
+
   public LoadDataSourceTypes() {
 
     this.ForecastModelList = Constants.LoadDataSources();
@@ -73,15 +82,21 @@ export class AppComponent implements OnInit {
     protected onChange(): void {
 
       // use distinctUntilChange(), prevent multiple change events
-      // this.LCUSelect.valueChanges
-      // .pipe(distinctUntilChanged())
-      // .subscribe(val => {
-      //   console.log('onChange app', val);
-      // });
+      this.LCUSelect.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe(val => {
+        // console.log('onChange select', val);
+      });
 
-      this.LCUSelect.valueChanges.subscribe((val: any) => {
-        console.log('VALUE CHANGED');
-      })
+      this.LCUConditions.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe(val => {
+        // console.log('onChange LCUConditions', val);
+      });
+
+      // this.LCUSelect.valueChanges.subscribe((val: any) => {
+      //   console.log('VALUE CHANGED');
+      // })
   
     }
 

@@ -136,7 +136,7 @@ protected isReady: boolean;
 public SelectAllObj: SelectSourceModel = new SelectSourceModel('Select All', null);
 
 /** Fired when any changes to the model are detected */
-public onChange: any = () => { console.log('change, sucka, CHANGE!'); };
+public onChange: any = () => {  };
 
 /** Fired when the component is blurred. TODO: This currently doesn't work - need to figure out why and fix it */
 public onTouched: any = () => { };
@@ -350,8 +350,7 @@ setDisabledState(isDisabled: boolean): void {
  */
 public emitSelected(val: Array<EventModel>) {
   this.SelectedEvent.emit(val);
- 
-  console.log('EMIT CHANGE', val);
+
   // prevent double emit
   this.SelectedEvent.complete();
 }
