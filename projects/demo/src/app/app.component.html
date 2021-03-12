@@ -9,19 +9,20 @@
     fxLayout="column"
     [formGroup]="Form"
     novalidate>
-    <div fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
+    <div formGroupName="TestControls" fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
         <mat-dialog-content fxLayout="column" style="width:100%;">
             <lcu-select
               [Config]="JSONConfig"
               Placeholder="LCU-Select"
               formControlName="lcuSelect"
+              (change)="SelectionChanged($event)"
               (SelectOpened)="SelectionOpened($event)"
               (SelectOptionSelected)="OptionSelected($event)">
             </lcu-select>
         <mat-error *ngIf="LCUSelect.hasError('required')">Selection Required</mat-error>
       </mat-dialog-content>
     </div>
-    <div fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
+    <div formGroupName="TestControls" fxLayout="column" fxFlex fxLayoutAlign="center center" class="m-10">
       <mat-dialog-content fxLayout="column" style="width:100%;">
           <lcu-select
             [Config]="ConditionsConfig"
